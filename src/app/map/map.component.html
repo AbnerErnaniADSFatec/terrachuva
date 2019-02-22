@@ -1,0 +1,516 @@
+<div class="wrapper" id="connected">
+    <!-- Sidebar Holder -->
+    <nav id="sidebar">
+        <div class="sidebar-header">
+            <div class="row">
+                <label class="search-box__label" for="search">
+                    <i class="search-box__icon material-icons">search</i>
+                </label>
+                <input class="search-box__input" id="search" type="text" placeholder="cidade, uf">
+            </div>
+            <div class="desctxt">
+                <h5><span class="amarelo">SMH</span><span class="verde">UI</span> </h5>
+                <div class="texto">Sistema de monitoramento Hidrometeorologico.</div>
+            </div>
+        </div>
+        <!-- ferramentas gerais -->
+        <div class="ferramentas">
+            <dfn data-info="Volte o mapa para a posição inicial">
+                <button type="button" class="btn"><i class="material-icons md-light">open_with</i></button>
+            </dfn>
+            <button type="button" class="btn"><i class="material-icons md-light md-inactive">feedback</i></button>
+            <button type="button" class="btn"><i class="material-icons md-light">explore</i></button>
+            <button type="button" class="btn"><i class="material-icons md-light">launch</i></button>
+            <button type="button" class="btn"><i class="material-icons md-light">cloud_download</i></button>
+            <button type="button" class="btn"><i class="material-icons md-light">add_box</i></button>
+            <button type="button" class="btn"><i class="material-icons md-light">undo</i></button>
+            <button type="button" class="btn"><i class="material-icons md-light">redo</i></button>
+        </div>
+
+        <div class = "layer custom-inputs" (click) = "setLayerType()"><ul class="list-unstyled components connected list">
+            <!-- Camada 1 -->
+            <li>
+                <a href = "#camadas1" data-toggle = "collapse" aria-expanded = "false" class="dropdown-toggle">
+                    <dfn data-info="Opções da Camada">
+                        <i class="material-icons configura">settings</i> Político
+                    </dfn>
+                    <div class="fontecamada">Fonte da camada: IBGE</div>
+                </a>
+                <div class="material-switch pull-right">
+                    <!-- <input id="camada" name="someSwitchOption001" type="checkbox" /> -->
+                    <p-inputSwitch [(ngModel)] = "checked[0]"></p-inputSwitch>
+                    <!-- <label for="camada" class="bg-white"></label> -->
+                </div>
+                <div [style.visibility] = "checked[0] ? 'visible' : 'hidden'"><ul class="collapse list-unstyled dropdown" id = "camadas1" >
+                    <li>
+                        <div class="fe-camadas">
+                            <button type="button" class="btn"><i class="material-icons md-dark">swap_vert</i></button>
+                            <button type="button" class="btn"><i class="material-icons md-dark">palette</i></button>
+                            <button type="button" class="btn"><i class="material-icons md-dark md-inactive">add_location</i></button>
+                            <button class = "btn" type = "button" data-toggle = "collapse" href = "#collapseOpacity1" role = "button" aria-expanded = "false" aria-controls = "collapseOpacity1">
+                                <i class="material-icons md-dark">brightness_6</i>
+                            </button>
+                        </div>
+                    </li>
+                </ul>
+                <!-- Range Opacidade -->
+                <div class = "collapse" id = "camadas1">
+                    <div class="card card-body card-opacity">
+                        <div class = "budget-wrap" (mouseup) = "setLayerType()">
+                            <!-- <input type="range" [(ngModel)]="val1"  min="1" max="100" value="20"> -->
+                            <p-slider [(ngModel)] = "vals[0]"  [style] = "{'width':'14em'}" ></p-slider>
+                        </div>
+                    </div>
+                </div></div>
+                <!-- Fim -->
+            </li>
+            <!-- Fim da camada 1 -->
+
+            <!-- Camada 2 -->
+            <li>
+                <a href="#camadas2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <i class = "material-icons configura">settings</i> Preciptação
+                    <div class = "fontecamada">Fonte da camada: OBT DPI</div>
+                </a>
+                <div class = "material-switch pull-right">
+                    <!--<input id="camada2" name="someSwitchOption001" type="checkbox" />-->
+                    <p-inputSwitch [(ngModel)] = "checked[1]"></p-inputSwitch>
+                    <!--<label for="camada2" class="bg-white"></label>-->
+                </div>
+                <ul class="collapse list-unstyled" id="camadas2">
+                    <li>
+                        <div class="fe-camadas">
+                            <button type="button" class="btn"><i class="material-icons md-dark">swap_vert</i></button>
+                            <button type="button" class="btn"><i class="material-icons md-dark">palette</i></button>
+                            <button type="button" class="btn"><i class="material-icons md-dark md-inactive">add_location</i></button>
+                            <button class = "btn" type = "button" data-toggle = "collapse" href = "#collapseOpacity2" role = "button" aria-expanded = "false" aria-controls = "collapseOpacity2" >
+                                <i class="material-icons md-dark">brightness_6</i>
+                            </button>
+                        </div>
+                    </li>
+                </ul>
+                <!-- Range Opacidade -->
+                <div class = "collapse" id = "collapseOpacity2">
+                    <div class = "card card-body card-opacity">
+                        <div class = "budget-wrap" (mouseup) = "setLayerType()">
+                            <p-slider [(ngModel)] = "vals[1]"  [style] = "{'width':'14em'}" ></p-slider>
+                        </div>
+                    </div>
+                </div>
+                <!-- Fim -->
+            </li>
+            <!-- Fim da camada 2 -->
+
+            <!-- Camada 3 -->
+            <li>
+                <a href="#camadas3" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <i class="material-icons configura">settings</i> PCD's
+                    <div class="fontecamada">Fonte da camada: OBT DPI</div>
+                </a>
+                <div class="material-switch pull-right">
+                    <!-- <input id="camada3" name="someSwitchOption001" type="checkbox" /> -->
+                    <p-inputSwitch [(ngModel)] = "checked[2]"></p-inputSwitch>
+                    <!-- <label for="camada3" class="bg-white"></label> -->
+                </div>
+                <ul class="collapse list-unstyled" id="camadas3">
+                    <li>
+                        <div class="fe-camadas">
+                            <button type="button" class="btn"><i class="material-icons md-dark">swap_vert</i></button>
+                            <button type="button" class="btn"><i class="material-icons md-dark">palette</i></button>
+                            <button type="button" class="btn"><i class="material-icons md-dark md-inactive">add_location</i></button>
+                            <button class = "btn" type = "button" data-toggle = "collapse" href = "#collapseOpacity3" role = "button" aria-expanded = "false" aria-controls = "collapseOpacity3" >
+                                <i class="material-icons md-dark">brightness_6</i>
+                            </button>
+                        </div>
+                    </li>
+                </ul>
+                <!-- Range Opacidade -->
+                <div class = "collapse" id = "collapseOpacity3">
+                    <div class = "card card-body card-opacity">
+                        <div class = "budget-wrap" (mouseup) = "setLayerType()">
+                            <p-slider [(ngModel)] = "vals[2]"  [style] = "{'width':'14em'}" ></p-slider>
+                        </div>
+                    </div>
+                </div>
+                <!-- Fim -->
+            </li>
+            <!-- Fim da camada 3 -->
+
+            <!-- Camada 4 -->
+            <li>
+                <a href="#camadas4" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <i class="material-icons configura">settings</i> Estados
+                    <div class="fontecamada">Fonte da camada: OBT DPI</div>
+                </a>
+                <div class="material-switch pull-right">
+                    <!-- <input id="camada4" name="someSwitchOption001" type="checkbox" /> -->
+                    <p-inputSwitch [(ngModel)] = "checked[3]"></p-inputSwitch>
+                    <!-- <label for="camada4" class="bg-white"></label> -->
+                </div>
+                <ul class="collapse list-unstyled" id="camadas4">
+                    <li>
+                        <div class="fe-camadas">
+                            <button type="button" class="btn"><i class="material-icons md-dark">swap_vert</i></button>
+                            <button type="button" class="btn"><i class="material-icons md-dark">palette</i></button>
+                            <button type="button" class="btn"><i class="material-icons md-dark md-inactive">add_location</i></button>
+                            <button class = "btn" type = "button" data-toggle = "collapse" href = "#collapseOpacity4" role = "button" aria-expanded = "false" aria-controls = "collapseOpacity4" >
+                                <i class="material-icons md-dark">brightness_6</i>
+                            </button>
+                        </div>
+                    </li>
+                </ul>
+                <!-- Range Opacidade -->
+                <div class = "collapse" id = "collapseOpacity4">
+                    <div class = "card card-body card-opacity">
+                        <div class = "budget-wrap" (mouseup) = "setLayerType()">
+                            <p-slider [(ngModel)] = "vals[3]"  [style] = "{'width':'14em'}" ></p-slider>
+                        </div>
+                    </div>
+                </div>
+                <!-- Fim -->
+            </li>
+            <!-- Fim da camada 4 -->
+
+            <!-- Camada 5 -->
+            <li>
+                <a href="#camadas5" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <i class="material-icons configura">settings</i> Queimadas
+                    <div class="fontecamada">Fonte da camada: OBT DPI</div>
+                </a>
+                <div class="material-switch pull-right">
+                    <!-- <input id="camada5" name="someSwitchOption001" type="checkbox" /> -->
+                    <p-inputSwitch [(ngModel)] = "checked[4]"></p-inputSwitch>
+                    <!-- <label for="camada5" class="bg-white"></label> -->
+                </div>
+                <ul class="collapse list-unstyled" id="camadas5">
+                    <li>
+                        <div class="fe-camadas">
+                            <button type="button" class="btn"><i class="material-icons md-dark">swap_vert</i></button>
+                            <button type="button" class="btn"><i class="material-icons md-dark">palette</i></button>
+                            <button type="button" class="btn"><i class="material-icons md-dark md-inactive">add_location</i></button>
+                            <button class = "btn" type = "button" data-toggle = "collapse" href = "#collapseOpacity5" role = "button" aria-expanded = "false" aria-controls = "collapseOpacity5" >
+                                <i class="material-icons md-dark">brightness_6</i>
+                            </button>
+                        </div>
+                    </li>
+                </ul>
+                <!-- Range Opacidade -->
+                <div class = "collapse" id = "collapseOpacity5">
+                    <div class = "card card-body card-opacity">
+                        <div class = "budget-wrap" (mouseup) = "setLayerType()">
+                            <p-slider [(ngModel)] = "vals[4]"  [style] = "{'width':'14em'}" ></p-slider>
+                        </div>
+                    </div>
+                </div>
+                <!-- Fim -->
+            </li>
+            <!-- Fim da camada 5 -->
+            <!-- Camada 6 -->
+            <li>
+                <a href = "#camadas6" data-toggle = "collapse" aria-expanded = "false" class="dropdown-toggle">
+                    <i class="material-icons configura">settings</i> Análise Média
+                    <div class="fontecamada">Fonte da camada: OBT DPI</div>
+                </a>
+                <div class="material-switch pull-right">
+                    <p-inputSwitch [(ngModel)] = "checked[5]"></p-inputSwitch>
+                </div>
+                <ul class="collapse list-unstyled" id="camadas6">
+                    <li>
+                        <div class="fe-camadas">
+                            <button type="button" class="btn"><i class="material-icons md-dark">swap_vert</i></button>
+                            <button type="button" class="btn"><i class="material-icons md-dark">palette</i></button>
+                            <button type="button" class="btn"><i class="material-icons md-dark md-inactive">add_location</i></button>
+                            <button class = "btn" type = "button" data-toggle = "collapse" href = "#collapseOpacity6" role = "button" aria-expanded = "false" aria-controls = "collapseOpacity6" >
+                                <i class="material-icons md-dark">brightness_6</i>
+                            </button>
+                        </div>
+                    </li>
+                </ul>
+                <!-- Range Opacidade -->
+                <div class = "collapse" id = "collapseOpacity6">
+                    <div class = "card card-body card-opacity">
+                        <div class = "budget-wrap" (mouseup) = "setLayerType()">
+                            <p-slider [(ngModel)] = "vals[5]"  [style] = "{'width':'14em'}"></p-slider>
+                        </div>
+                    </div>
+                </div>
+                <!-- Fim -->
+            </li>
+            <!-- Fim da camada 6 -->
+        </ul></div>
+        <ul class="list-unstyled CTAs">
+            <li><a href="http://www.terrama2.dpi.inpe.br/" class="btn btn-primary btn-success">Projeto TerraMA2</a></li>
+        </ul>
+    </nav>
+
+
+    <!-- Menu superior -->
+    <div id="content">
+        <nav class="navbar navbar-expand-lg materialnav navbar-header">
+            <button class="btn btn-material navbar-btn " type="button" data-toggle="collapse" id="sidebarCollapse"
+                data-target="#navbar" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="material-icons menuicon">menu</i>
+            </button>
+            <a class="navbar-brand" href="#"><span class="amarelo">SMH-</span><span class="verde">UI</span></a>
+            <div class="collapse navbar-collapse justify-content-between">
+                <div class="navbar-nav">
+                    <a class="nav-item nav-link" href="#">| Sistema de Monitoramento Hidrometeorológico</a>
+                </div>
+
+                <ul class="navbar-nav  navbar-right">
+                    <li class="nav-item dropdown analises">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Análises
+                        </a>
+                        <div class="dropdown-menu submenu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="#">Desmatamento</a>
+                            <a class="dropdown-item" href="#">Alertas</a>
+                            <a class="dropdown-item" href="#">Uso e cobertura da terra</a>
+                        </div>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Sobre <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contato</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><img src="assets/img/br.svg" class="bandeira" alt="portugues"></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><img src="assets/img/usa.svg" class="bandeira" alt="ingles"></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div class="container-fluid mapa">
+            <div id = "form" [style.visibility] = "checked[1] ? 'visible' : 'hidden'" >
+                <!--<input type="text" [(ngModel)]="busca" placeholder="Busca">
+                <button type="submit" (click)="salvar()">Pesquisar</button>
+                <input type="text" [(ngModel)]="busca" placeholder="Busca">
+                <button type="submit" (click)="salvar()">Pesquisar</button></br>-->
+                <h6>Merge4km</h6>
+                <p-calendar
+                    [(ngModel)] = "dates[1]"
+                    [minDate] = "minDate"
+                    [maxDate] = "maxDate"
+                    [readonlyInput]="true"
+                    dateFormat = "dd/mm/yy"
+                    [monthNavigator] = "true" 
+                    [yearNavigator] = "true" 
+                    yearRange = "1998:2019"
+                ></p-calendar>
+                <button type = "button" (click) = "setTimeLayer()">Aplicar</button>
+            </div>
+            <div id = "form" [style.visibility] = "checked[5] ? 'visible' : 'hidden'" >
+                <!--<input type="text" [(ngModel)]="busca" placeholder="Busca">
+                <button type="submit" (click)="salvar()">Pesquisar</button>
+                <input type="text" [(ngModel)]="busca" placeholder="Busca">
+                <button type="submit" (click)="salvar()">Pesquisar</button></br>-->
+                <h6>Análise Merge4km</h6>
+                <p-calendar
+                    [(ngModel)] = "dates[5]"
+                    [readonlyInput] = "true"
+                    dateFormat = "dd/mm/yy"
+                    [monthNavigator] = "true"
+                    [yearNavigator] = "true"
+                    yearRange = "1998:1999"
+                ></p-calendar>
+                <button type = "button" (click) = "setTimeLayer()">Aplicar</button>
+            </div>
+            <!-- <form>
+                <label> Precisão </label>
+                <input id = "precision" type = "number" min = "0" max = "12" value = "4"/>
+            </form> -->
+            <div id = "map" class = "map"></div>
+            <div id = "mouse-position"></div>
+        </div>
+    </div>
+</div>
+
+<!-- slide -->
+<!-- 
+<div class="container">
+    <div class="row">
+        <div class="modal fade" id="myModal">
+            <div class="modal-dialog">
+                <div class="modal-content modalinf">
+                    <div class="modal-header fechar">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="material-icons">clear</i></button>
+                    </div> -->
+                    <!-- / modal-header -->
+                    <!--
+                    <div class="modal-body ">
+                        <div id="carouselExampleIndicators" class="carousel slide sobre" data-ride="carousel">
+                            <ol class="carousel-indicators">
+                                <li data-target="#carouselExampleIndicators" id="" data-slide-to="0" class="active"></li>
+                                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                                <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+                            </ol>
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <img class="d-block w-100" src="assets/img/slider7.jpg" alt="Primeiro slide">
+                                    <h1 class="titulo">Sobre o <span class="amarelo">Terra</span><span class="verde">Brasillis</span></h1>
+                                    <p class="descricaoslide"> O TerraBrasilis é uma plataforma desenvolvida pelo INPE
+                                        para organização, acesso e uso através de um portal web dos dados geográficos
+                                        produzidos pelos eus programas de monitoramento ambiental. </p>
+                                </div>
+                                <div class="carousel-item">
+                                    <img class="d-block w-100" src="assets/img/slide2.jpg" alt="Segundo slide">
+                                    <h1 class="titulo">Sobre o <span class="amarelo">Terra</span><span class="verde">Brasillis</span></h1>
+                                    <p class="descricaoslide"> O TerraBrasilis é uma plataforma desenvolvida pelo INPE
+                                        para organização, acesso e uso através de um portal web dos dados geográficos
+                                        produzidos pelos eus programas de monitoramento ambiental. </p>
+                                </div>
+                            </div>
+                            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </div>
+                    </div> -->
+                    <!-- / modal-body -->
+                    <!--
+                    <div class="modal-footer">
+                        <div class="checkbox pull-right">
+                            <label>
+                                <input class="modal-check" name="modal-check" type="checkbox"><span class="textoc">Não
+                                    mostrar novamente.</span>
+                            </label>
+                        </div> -->
+                        <!--/ checkbox
+                    </div>
+                    / modal-footer
+                </div>
+                / modal-content
+            </div>
+            / modal-dialog
+        </div>
+        / modal
+    </div>
+   / row
+</div>
+/ container -->
+
+<!-- Baselayers -->
+<div class="btnbaselayer">
+    <div class = "baselayer custom-radios" (click)="setMapType()">
+        <i class="fa fa-clone"></i>
+        <ul>
+            <li class="icon">
+                <p-radioButton name = "osm" value = "osm" label = " Google Satelite " [(ngModel)]="setMap" inputId="preopt1"></p-radioButton>
+                <label for="radio1"><span></span></label>
+                <!-- <span class="text"></span> -->
+            </li>
+
+            <li class="icon">
+                <p-radioButton name = "GEBCO" value = "GEBCO" label=" GEBCO " [(ngModel)] = "setMap" inputId="preopt2"></p-radioButton>
+                <label for="radio2"><span></span></label>
+                <!-- <span class="text">Google Hybrid</span> -->
+            </li>
+            <li class="icon">
+                <p-radioButton name = "Watercolor" value="Watercolor" label = " Watercolor " [(ngModel)]="setMap" inputId="preopt3"></p-radioButton>
+                <label for="radio3"><span></span></label>
+                <!-- <span class="text">Google Streets</span> -->
+            </li>
+            <li class="icon">
+                <p-radioButton name = "Toner" value = "Toner" label = " Toner " [(ngModel)]="setMap" inputId="preopt4"></p-radioButton>
+                <label for="radio4"><span></span></label>
+                <!-- <span class="text">Google Terrain</span> -->
+            </li>
+            <li class="icon">
+                <p-radioButton name = "Terrain" value = "Terrain" label = " Terrain " [(ngModel)]="setMap" inputId="preopt5"></p-radioButton>
+                <label for="radio4"><span></span></label>
+                <!-- <span class="text">Google Terrain</span> -->
+            </li>
+
+        </ul>
+    </div>
+</div>
+
+<!-- fim -->
+<!--Footer-->
+<footer class="footer">
+    <p>© 2018<a href="#"> TerraBrasilis</a></p>
+</footer>
+<!--/.Footer-->
+
+<!-- <div id="form">
+                <input type="text" [(ngModel)]="busca" placeholder="Busca">
+            
+                <button type="submit" (click)="salvar()">Pesquisar</button>
+            </div> -->
+
+<!-- <div id="map" alt="mapa" class="mapaimg embed-responsive"></div> -->
+<!-- <p-progressBar [value]="value" [hidden]="testep"></p-progressBar> -->
+
+<!-- {{busca}} -->
+
+<!-- <div id="menu" class="ui-g" (click)="setMapType()" style="width:250px;margin-bottom:10px">
+                <div class="ui-g-12">
+                    <p-radioButton name="Watercolor" value="osm" label="OSM" [(ngModel)]="setMap" inputId="preopt1"></p-radioButton>
+                </div>
+                <div class="ui-g-12">
+                    <p-radioButton name="Watercolor" value="GEBCO" label="GEBCO" [(ngModel)]="setMap" inputId="preopt2"></p-radioButton>
+                </div>
+                <div class="ui-g-12">
+                    <p-radioButton name="Watercolor" value="Watercolor" label="Watercolor" [(ngModel)]="setMap" inputId="preopt3"></p-radioButton>
+                </div>
+                <div class="ui-g-12">
+                    <p-radioButton name="Watercolor" value="Toner" label="Toner" [(ngModel)]="setMap" inputId="preopt4"></p-radioButton>
+                </div>
+                <div class="ui-g-12">
+                    <p-radioButton name="Watercolor" value="Terrain" label="Terrain" [(ngModel)]="setMap" inputId="preopt5"></p-radioButton>
+                </div>
+            </div> -->
+<!-- Selected Value = {{setMap||'none'}} -->
+
+<!-- <div (click)="setLayerType()" class="ui-g" style="width:250px;margin-bottom:10px">
+                <div class="ui-g-12"><p-checkbox name="group2" value="baciashidrografica" label="baciashidrografica" [(ngModel)]="selectedCategories" inputId="baciashidrografica"></p-checkbox></div>
+                <div class="ui-g-12"><p-checkbox name="group2" value="prec4km" label="prec4km" [(ngModel)]="selectedCategories" inputId="prec4km"></p-checkbox></div>
+                <div class="ui-g-12"><p-checkbox name="group2" value="pcd" label="PCDs" [(ngModel)]="selectedCategories" inputId="PCDs"></p-checkbox></div>
+                <div class="ui-g-12"><p-checkbox name="group2" value="estado" label="Estados" [(ngModel)]="selectedCategories" inputId="Estados"></p-checkbox></div>
+            </div> -->
+<!-- <button type="submit" (click)="activeLayer()">active</button>
+            <button type="submit" (click)="dellLayer()">Remover Layer</button> -->
+
+<!-- <ul id="menu" onchange="testedd()">
+                <li data-type="OSM">OSM</li>
+                <li data-type="mapQuestOSM">Mapquest</li>
+                <li data-type="mapQuestSAT">Mapquest Sat</li>
+            </ul> -->
+
+<!-- <select (onchange)="changeMap()">
+                <option value="BingSat">Bing Sat</option>
+                <option value="BingRoad">Bing Road</option>
+                <option value="OSM">OSM</option>
+                <option value="MapquestSat">Mapquest Sat</option>
+                <option value="MapQuestRoad">MapQuest Road</option>
+            </select>  -->
+
+<!-- <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                    <a data-toggle="collapse" href="#basemap-choice">
+                        <i class="fa fa-list-alt"></i>
+                        Basemaps
+                    </a>
+            
+                    </h4>
+                </div>
+                <div id="basemap-choice" class="panel-collapse collapse in">
+                    <div class="panel-body" id="basemaps">
+            
+                    </div>
+                    <div id="baseopacity">
+                        <label>Opacity</label>
+                        <input id="baseopslider" type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="100"/>
+            
+                    </div>                
+                </div>
+            </div> -->

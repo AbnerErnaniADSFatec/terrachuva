@@ -1,0 +1,25 @@
+@charset "utf-8";
+/* CSS Document */
+@import url("http://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
+
+
+/*--------------------------------------------------------
+    ABOUT
+----------------------------------------------------------*/
+.aboutdialog { margin-top: 80px;}
+.about .btn-primary:hover,.about .btn-primary:focus { background-color: #006950; border-color: #108d6f; box-shadow: none; outline: none;}
+.about .btn-primary {color: #fff; background-color: #108d6f; border-color: #108d6f;}
+.about section {padding: 20px 0;}
+.about section .titleb {  text-align: center; color: #007b5e;margin-bottom: 50px; text-transform: uppercase;}
+.about .titlegreen {color: #fff;}
+.cardfront {position: relative; -webkit-transform: rotateY(0deg); -ms-transform: rotateY(0deg); z-index: 2; margin-bottom: 30px;}
+.cardfront .card{min-height: 312px;}
+.cardfront .card .card-title,.card-title {color: #007b5e !important;}
+.cardfront .card .card-body img {width: 120px; height: 120px; border-radius: 50%;}
+.msgn { color:#3fc3a3; font-size: 14px; padding: 15px; }
+.padding80 {padding:40px;}
+.bgcolor-voilet {background-color: #007b5e;color:#fff;}
+.tmargin10 { margin-top :10px;}
+.about .txtvisao { color: #fff;}
+.aboutcard-title{text-align: center; margin-top: 15px;}
+.about .logo-card .logo-img{ width: 8em; position: absolute; top: 10px;left: 51%; margin-left: -5em; border-radius: 100%;overflow: hidden; z-index: 999; }

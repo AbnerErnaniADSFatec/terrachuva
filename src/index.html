@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>SMH-UI</title>
+  <base href="/">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <!-- jQuery CDN -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.js" integrity="sha256-fNXJFIlca05BIO2Y5zh1xrShK3ME+/lYZ0j+ChxX2DA="
+    crossorigin="anonymous"></script>
+  <!-- Popper.JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous"></script>
+  <!-- Bootstrap Js CDN -->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+    crossorigin="anonymous"></script>
+  <!-- jQuery Custom Scroller CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+  <!-- Plugin slider range -->
+  <script src="assets/js/rangeslider.js"></script>
+  <!-- Plugin para fechar o splash inicial no cookie -->
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+
+  <!-- Bootstrap CSS CDN -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+    crossorigin="anonymous">
+  <!-- CSS personalizado -->
+  <link rel="stylesheet" href="assets/css/estilo-ext.css">
+  <!-- Scrollbar Custom CSS -->
+  <link rel="stylesheet" href="assets/css/jquery.mCustomScrollbar.min.css">
+  <!-- Font-awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+    crossorigin="anonymous">
+  <!-- Font Material design google -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+</head>
+
+<body>
+  <app-root></app-root>
+
+  <!-- menu sidebar -->
+  <script type="text/javascript">
+    $(document).ready(function () {
+      $("#sidebar").mCustomScrollbar({
+        theme: "minimal"
+      });
+
+      $('#sidebarCollapse').on('click', function () {
+        $('#sidebar, #content').toggleClass('active');
+        $('.collapse.in').toggleClass('in');
+        $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+      });
+    });
+
+  </script>
+
+  <!-- controle de opacidade -->
+  <script>
+    $(function () {
+      $('input[type="range"]').rangeslider({
+        polyfill: false,
+        onInit: function () {
+          $('.header .pull-right').text($('input[type="range"]').val() + 'K');
+        },
+        onSlide: function (position, value) {
+          //console.log('onSlide');
+          //console.log('position: ' + position, 'value: ' + value);
+          $('.header .pull-right').text(value + 'K');
+        },
+        onSlideEnd: function (position, value) {
+          //console.log('onSlideEnd');
+          //console.log('position: ' + position, 'value: ' + value);
+        }
+      });
+    });
+  </script>
+
+
+  <!-- Carousel Slider -->
+  <script>$(document).ready(function () {
+      $('#myModal').modal('show');
+      //carousel 
+      $('.carousel').carousel({
+        interval: 2000
+      })
+    });
+  </script>
+
+
+  <!-- Drag Drop -->
+  <script>
+    (function ($) {
+      var dragging, placeholders = $();
+      $.fn.sortable = function (options) {
+        var method = String(options);
+        options = $.extend({
+          connectWith: false
+        }, options);
+        return this.each(function () {
+          if (/^enable|disable|destroy$/.test(method)) {
+            var items = $(this).children($(this).data('items')).attr('draggable', method == 'enable');
+            if (method == 'destroy') {
+              items.add(this).removeData('connectWith items')
+                .off('dragstart.h5s dragend.h5s selectstart.h5s dragover.h5s dragenter.h5s drop.h5s');
+            }
+            return;
+          }
+          var isHandle, index, items = $(this).children(options.items);
+          var placeholder = $('<' + (/^ul|ol$/i.test(this.tagName) ? 'li' : 'div') + ' class="sortable-placeholder">');
+          items.find(options.handle).mousedown(function () {
+            isHandle = true;
+          }).mouseup(function () {
+            isHandle = false;
+          });
+          $(this).data('items', options.items)
+          placeholders = placeholders.add(placeholder);
+          if (options.connectWith) {
+            $(options.connectWith).add(this).data('connectWith', options.connectWith);
+          }
+          items.attr('draggable', 'true').on('dragstart.h5s', function (e) {
+            if (options.handle && !isHandle) {
+              return false;
+            }
+            isHandle = false;
+            var dt = e.originalEvent.dataTransfer;
+            dt.effectAllowed = 'move';
+            dt.setData('Text', 'dummy');
+            index = (dragging = $(this)).addClass('sortable-dragging').index();
+          }).on('dragend.h5s', function () {
+            if (!dragging) {
+              return;
+            }
+            dragging.removeClass('sortable-dragging').show();
+            placeholders.detach();
+            if (index != dragging.index()) {
+              dragging.parent().trigger('sortupdate', { item: dragging });
+            }
+            dragging = null;
+          }).not('a[href], img').on('selectstart.h5s', function () {
+            this.dragDrop && this.dragDrop();
+            return false;
+          }).end().add([this, placeholder]).on('dragover.h5s dragenter.h5s drop.h5s', function (e) {
+            if (!items.is(dragging) && options.connectWith !== $(dragging).parent().data('connectWith')) {
+              return true;
+            }
+            if (e.type == 'drop') {
+              e.stopPropagation();
+              placeholders.filter(':visible').after(dragging);
+              dragging.trigger('dragend.h5s');
+              return false;
+            }
+            e.preventDefault();
+            e.originalEvent.dataTransfer.dropEffect = 'move';
+            if (items.is(this)) {
+              if (options.forcePlaceholderSize) {
+                placeholder.height(dragging.outerHeight());
+              }
+              dragging.hide();
+              $(this)[placeholder.index() < $(this).index() ? 'after' : 'before'](placeholder);
+              placeholders.not(placeholder).detach();
+            } else if (!placeholders.is(this) && !$(this).children(options.items).length) {
+              placeholders.detach();
+              $(this).append(placeholder);
+            }
+            return false;
+          });
+        });
+      };
+    })(jQuery);
+
+    $(function () {
+      $('.sortable').sortable();
+      $('.handles').sortable({
+        handle: 'span'
+      });
+      $('.connected').sortable({
+        connectWith: '.connected'
+      });
+      $('.exclude').sortable({
+        items: ':not(.disabled)'
+      });
+    });
+
+  </script>
+
+</body>
+
+</html>
